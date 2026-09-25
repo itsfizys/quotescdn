@@ -533,7 +533,6 @@ The docs page includes:
 ├── authors.json
 ├── quotes.json
 ├── server.js
-├── THIRD_PARTY.md
 ├── vercel.json
 └── package.json
 ```
