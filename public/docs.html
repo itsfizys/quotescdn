@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Quotes CDN API documentation." />
+    <title>Quotes CDN — API docs</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="docs-page">
+    <header class="docs-header shell">
+      <a class="brand" href="/">QUOTES<span>//</span>CDN</a>
+      <nav class="docs-header-nav" aria-label="Documentation navigation">
+        <a href="#overview">Overview</a>
+        <a href="#quotes">Quotes</a>
+        <a href="#cards">Cards</a>
+      </nav>
+      <div class="docs-header-meta">
+        <span>v1.0 / REST</span>
+        <a class="button button-dark" href="/">Back to home <span>↗</span></a>
+      </div>
+    </header>
+
+    <main class="docs-main shell">
+      <section class="docs-hero">
+        <div class="docs-hero-copy">
+          <h1>Build with<br /><em>better words.</em></h1>
+          <p class="docs-lede">A read-only JSON API for 25,000 quotes and 2,340 authors. Every endpoint is public, cacheable, and ready for a browser, bot, README, or side project.</p>
+          <div class="docs-hero-actions">
+            <a class="button button-blue" href="#quotes">Browse endpoints <span>↓</span></a>
+            <a class="text-link" href="#quick-start">Start in 30 seconds <span>↘</span></a>
+          </div>
+        </div>
+        <div class="docs-hero-card" id="quick-start">
+          <div class="docs-card-top">
+            <span><i></i><i></i><i></i></span>
+            <span>GET / QUICK START</span>
+          </div>
+          <div class="docs-card-body">
+            <span class="docs-card-label">BASE URL</span>
+            <div class="base-url">
+              <code id="base-url">http://localhost:5000</code>
+              <button class="copy-button" data-copy-text="base">Copy URL</button>
+            </div>
+            <p>Make a request and receive a clean JSON object.</p>
+            <pre class="code-block"><code>curl <span id="base-url-command">http://localhost:5000</span>/api/quote</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-metrics" aria-label="API facts">
+        <div><strong>25,000</strong><span>quotes in the archive</span></div>
+        <div><strong>2,340</strong><span>author records</span></div>
+        <div><strong>0</strong><span>keys or sign-ups needed</span></div>
+      </section>
+
+      <div class="docs-layout">
+        <aside class="docs-nav" aria-label="On this page">
+          <p>On this page</p>
+          <a class="active" href="#overview">Overview</a>
+          <a href="#quotes">Quote endpoints</a>
+          <a href="#authors">Author endpoints</a>
+          <a href="#search">Search &amp; stats</a>
+          <a href="#cards">SVG cards</a>
+          <a href="#utilities">Utilities</a>
+        </aside>
+
+        <div class="docs-content">
+          <section class="docs-section" id="overview">
+            <div class="docs-section-heading">
+              <span class="section-number">01</span>
+              <div>
+                <p class="eyebrow">The short version</p>
+                <h2>Simple by default.</h2>
+              </div>
+            </div>
+            <p>All routes use <code>GET</code>, return JSON, and work from any origin. Start with one quote, then add filters only when your interface needs them.</p>
+            <div class="docs-callout">
+              <span>START HERE</span>
+              <code>GET /api/quote</code>
+              <button class="try-route" data-route="/api/quote">Open endpoint ↗</button>
+            </div>
+            <pre class="code-block"><code>{
+  <span class="json-key">"quote"</span>: <span class="json-string">"Almost anyone can be an author..."</span>,
+  <span class="json-key">"author"</span>: <span class="json-string">"A. A. Milne"</span>,
+  <span class="json-key">"index"</span>: <span class="json-number">1</span>
+}</code></pre>
+          </section>
+
+          <section class="docs-section" id="quotes">
+            <div class="docs-section-heading">
+              <span class="section-number">02</span>
+              <div>
+                <p class="eyebrow">Core resources</p>
+                <h2>Quote endpoints.</h2>
+              </div>
+            </div>
+            <p>Use the quote routes for random discovery, stable indexes, or deterministic author-based experiences.</p>
+
+            <article class="endpoint-card featured">
+              <div class="endpoint-top"><span class="method get">GET</span><code>/api/quote</code><span class="endpoint-tag">RECOMMENDED</span></div>
+              <p>Return one quote. Add a query parameter to request a specific record, author, or deterministic result.</p>
+              <div class="param-list">
+                <div><code>index</code><span>number</span><small>One-based quote index.</small></div>
+                <div><code>author_id</code><span>string</span><small>Filter by stable author ID.</small></div>
+                <div><code>search</code><span>string</span><small>Search quote and author text.</small></div>
+                <div><code>seed</code><span>number</span><small>Repeat the same random result.</small></div>
+              </div>
+              <div class="endpoint-example"><span>EXAMPLE</span><code>/api/quote?search=courage&amp;seed=0</code><button class="try-route" data-route="/api/quote?search=courage&seed=0">Try it ↗</button></div>
+            </article>
+
+            <article class="endpoint-card">
+              <div class="endpoint-top"><span class="method get">GET</span><code>/api/quotes</code></div>
+              <p>Return a paginated collection of quotes for archive views and data tools.</p>
+              <div class="endpoint-example"><span>EXAMPLE</span><code>/api/quotes?limit=20&amp;offset=0</code><button class="try-route" data-route="/api/quotes?limit=20&offset=0">Try it ↗</button></div>
+            </article>
+
+            <article class="endpoint-card">
+              <div class="endpoint-top"><span class="method get">GET</span><code>/api/random</code></div>
+              <p>Return a fresh random quote without needing to know the archive size.</p>
+              <div class="endpoint-example"><span>EXAMPLE</span><code>/api/random</code><button class="try-route" data-route="/api/random">Try it ↗</button></div>
+            </article>
+          </section>
+
+          <section class="docs-section" id="authors">
+            <div class="docs-section-heading">
+              <span class="section-number">03</span>
+              <div>
+                <p class="eyebrow">People in the archive</p>
+                <h2>Author endpoints.</h2>
+              </div>
+            </div>
+            <p>Author records provide names, bios, quote counts, and stable IDs for browseable directory experiences.</p>
+            <div class="endpoint-card-grid">
+              <article class="endpoint-card">
+                <div class="endpoint-top"><span class="method get">GET</span><code>/api/authors</code></div>
+                <p>List authors with sorting and pagination.</p>
+                <div class="endpoint-example"><span>EXAMPLE</span><code>/api/authors?sort=quotes&amp;limit=20</code><button class="try-route" data-route="/api/authors?sort=quotes&limit=20">Try it ↗</button></div>
+              </article>
+              <article class="endpoint-card">
+                <div class="endpoint-top"><span class="method get">GET</span><code>/api/author/:id</code></div>
+                <p>Fetch one author record and its quote count.</p>
+                <div class="endpoint-example"><span>EXAMPLE</span><code>/api/author/A00001</code><button class="try-route" data-route="/api/author/A00001">Try it ↗</button></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="docs-section" id="search">
+            <div class="docs-section-heading">
+              <span class="section-number">04</span>
+              <div>
+                <p class="eyebrow">Discovery tools</p>
+                <h2>Search the archive.</h2>
+              </div>
+            </div>
+            <p>Build lightweight search, filters, and archive summaries with these read-only routes.</p>
+            <div class="endpoint-card-grid">
+              <article class="endpoint-card">
+                <div class="endpoint-top"><span class="method get">GET</span><code>/api/search</code></div>
+                <p>Search quotes and authors with a single query.</p>
+                <div class="endpoint-example"><span>EXAMPLE</span><code>/api/search?q=hope&amp;limit=10</code><button class="try-route" data-route="/api/search?q=hope&limit=10">Try it ↗</button></div>
+              </article>
+              <article class="endpoint-card">
+                <div class="endpoint-top"><span class="method get">GET</span><code>/api/stats</code></div>
+                <p>Return archive totals and summary counts.</p>
+                <div class="endpoint-example"><span>EXAMPLE</span><code>/api/stats</code><button class="try-route" data-route="/api/stats">Try it ↗</button></div>
+              </article>
+              <article class="endpoint-card">
+                <div class="endpoint-top"><span class="method get">GET</span><code>/api/themes</code></div>
+                <p>List available SVG card themes.</p>
+                <div class="endpoint-example"><span>EXAMPLE</span><code>/api/themes</code><button class="try-route" data-route="/api/themes">Try it ↗</button></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="docs-section" id="cards">
+            <div class="docs-section-heading">
+              <span class="section-number">05</span>
+              <div>
+                <p class="eyebrow">Visual output</p>
+                <h2>SVG quote cards.</h2>
+              </div>
+            </div>
+            <p>Generate a shareable SVG from any quote. Cards scale cleanly in READMEs, profiles, websites, and bots.</p>
+            <article class="endpoint-card featured">
+              <div class="endpoint-top"><span class="method get">GET</span><code>/api/card</code><span class="endpoint-tag">SVG</span></div>
+              <p>Generate a card by quote index, with optional theme and border controls.</p>
+              <div class="param-list">
+                <div><code>index</code><span>number</span><small>Quote index to render.</small></div>
+                <div><code>theme</code><span>string</span><small>dark, light, midnight, nord, or mono.</small></div>
+                <div><code>border_radius</code><span>number</span><small>Rounded corners from 0 to 40.</small></div>
+                <div><code>border_width</code><span>number</span><small>Stroke width from 0 to 5.</small></div>
+              </div>
+              <div class="endpoint-example"><span>EXAMPLE</span><code>/api/card?index=1&amp;theme=midnight</code><button class="try-route" data-route="/api/card?index=1&theme=midnight">Open card ↗</button></div>
+            </article>
+          </section>
+
+          <section class="docs-section" id="utilities">
+            <div class="docs-section-heading">
+              <span class="section-number">06</span>
+              <div>
+                <p class="eyebrow">Health and metadata</p>
+                <h2>Small useful routes.</h2>
+              </div>
+            </div>
+            <div class="utility-grid">
+              <article class="utility-card"><span>HEALTH</span><code>/api/health</code><p>Simple service status response.</p></article>
+              <article class="utility-card"><span>LETTERS</span><code>/api/letters</code><p>Author directory letter index.</p></article>
+              <article class="utility-card"><span>THEMES</span><code>/api/themes</code><p>Available card theme names.</p></article>
+              <article class="utility-card"><span>ROOT</span><code>/api</code><p>Machine-readable API index.</p></article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer shell">
+      <span>Quotes CDN / free quote data for makers</span>
+      <a href="/">Return to the archive ↗</a>
+    </footer>
+    <script src="/docs.js"></script>
+  </body>
+</html>

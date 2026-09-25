@@ -1,0 +1,15 @@
+{
+  "name": "quotes-cdn",
+  "version": "1.0.0",
+  "author": "itsfizys",
+  "private": true,
+  "license": "MIT",
+  "description": "A no-key quote API with author data and embeddable SVG quote cards.",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

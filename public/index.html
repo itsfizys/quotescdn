@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Quotes CDN — a free quote and author API with ready-to-embed SVG cards." />
+    <title>Quotes CDN — words worth keeping</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="home-page">
+    <div class="grain"></div>
+    <header class="site-header shell">
+      <a class="brand" href="/" aria-label="Quotes CDN home">QUOTES<span>//</span>CDN</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#explore">Explore</a>
+        <a href="#card-lab">Card lab</a>
+      </nav>
+      <a class="button button-blue button-small" href="/docs">Read the docs <span>↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero shell">
+        <div class="hero-copy">
+          <h1>Words worth<br /><em>keeping.</em></h1>
+          <p class="hero-intro">A fast, no-key API for quotes and the people behind them. Search the archive, grab a clean JSON record, or turn a line into a beautiful SVG.</p>
+          <div class="hero-actions">
+            <button class="button button-blue" id="hero-random">Roll a quote <span>↗</span></button>
+            <a class="button button-ghost" href="/docs">Explore the API <span>→</span></a>
+          </div>
+          <div class="hero-meta">
+            <span><i class="status-dot"></i> API online</span>
+            <span>GET only</span>
+            <span>No key required</span>
+          </div>
+        </div>
+        <div class="hero-console" aria-label="Live quote preview">
+          <div class="console-top">
+            <span class="console-lights"><i></i><i></i><i></i></span>
+            <span>LIVE / QUOTE_001</span>
+            <span>01:08:24</span>
+          </div>
+          <div class="console-screen">
+            <span class="console-prompt">QUOTE OF THE MOMENT</span>
+            <p id="hero-quote">The best way out is always through.</p>
+            <div class="console-byline"><span id="hero-author">— Robert Frost</span><span id="hero-index">#0001</span></div>
+          </div>
+          <div class="console-footer"><span>DATA / LOCAL INDEX</span><span>READY</span></div>
+          <div class="console-sticker">NO<br />KEY</div>
+        </div>
+      </section>
+
+      <div class="ticker" aria-label="Features">
+        <div class="ticker-track">QUOTE DATA <b>+</b> AUTHOR BIOS <b>+</b> SEARCHABLE JSON <b>+</b> SVG CARDS <b>+</b> NO API KEY <b>+</b> QUOTE DATA <b>+</b> AUTHOR BIOS <b>+</b> SEARCHABLE JSON <b>+</b> SVG CARDS <b>+</b> NO API KEY <b>+</b></div>
+      </div>
+
+      <section class="section shell" id="explore">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Live archive</p>
+            <h2>Find the<br /><em>right line.</em></h2>
+          </div>
+          <p class="section-description">Every record has a stable ID and index. Search by author, phrase, or exact quote number, then use the result anywhere.</p>
+        </div>
+        <div class="explore-layout">
+          <article class="quote-display" id="quote-display">
+            <div class="quote-display-top"><span class="data-tag" id="quote-tag">QUOTE / Q00001</span><span class="display-symbol">“</span></div>
+            <blockquote id="quote-text">Loading a quote from the archive…</blockquote>
+            <div class="quote-display-bottom">
+              <div><strong id="quote-author">—</strong><span id="quote-author-id">AUTHOR ID</span></div>
+              <div class="quote-actions"><span id="quote-number">INDEX 00001</span><button class="icon-button" id="copy-quote" title="Copy quote">⧉</button></div>
+            </div>
+          </article>
+          <aside class="explore-tools">
+            <form class="tool-panel" id="search-form">
+              <label for="search-input">Search the archive</label>
+              <div class="search-row">
+                <input id="search-input" type="search" placeholder="author, phrase, or index" autocomplete="off" />
+                <button class="square-button" type="submit" aria-label="Search">→</button>
+              </div>
+              <p class="tool-status" id="search-status" aria-live="polite">Try “Virginia”, “time”, or 42.</p>
+            </form>
+            <button class="button button-dark full-button" id="random-quote">Give me a random one <span>↗</span></button>
+            <div class="stat-stack">
+              <div><strong id="stat-quotes">25,000</strong><span>quotes indexed</span></div>
+              <div><strong id="stat-authors">2,340</strong><span>authors catalogued</span></div>
+              <div><strong>11</strong><span>API routes</span></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="card-lab" id="card-lab">
+        <div class="shell">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Make a card</p>
+              <h2>Turn a quote<br /><em>into a card.</em></h2>
+            </div>
+            <p class="section-description">Pick a quote, choose a look, and copy the image link when it feels right.</p>
+          </div>
+          <div class="lab-layout">
+            <div class="preview-frame">
+              <div class="preview-bar"><span>LIVE PREVIEW</span><span id="preview-theme-label">MIDNIGHT</span></div>
+              <img id="card-preview" class="card-preview" src="/api/card?index=1&theme=midnight" alt="Generated quote card preview" />
+              <p class="preview-caption">Updates with your quote and theme.</p>
+            </div>
+            <div class="lab-controls">
+              <div class="control-box">
+                <label for="card-index">Quote number</label>
+                <div class="control-row">
+                  <input id="card-index" type="number" value="1" min="1" />
+                  <button class="button button-blue button-small" id="load-card">Load <span>↗</span></button>
+                </div>
+                <p id="card-status">Previewing quote 1.</p>
+              </div>
+              <button class="button button-ghost light-button full-button" id="random-card">Pick another quote <span>↗</span></button>
+              <p class="control-label">Choose a theme</p>
+              <div class="theme-grid" id="theme-grid">
+                <button class="theme-chip active" data-theme="midnight"><i class="swatch swatch-midnight"></i>Midnight</button>
+                <button class="theme-chip" data-theme="dark"><i class="swatch swatch-dark"></i>Dark</button>
+                <button class="theme-chip" data-theme="nord"><i class="swatch swatch-nord"></i>Nord</button>
+                <button class="theme-chip" data-theme="mono"><i class="swatch swatch-mono"></i>Mono</button>
+              </div>
+              <div class="url-box">
+                <span>IMAGE LINK</span>
+                <code id="card-url">/api/card?index=1&amp;theme=midnight</code>
+                <button id="copy-card-url">Copy URL <span>↗</span></button>
+              </div>
+              <a class="lab-doc-link" href="/docs#cards">See card details <span>↗</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing shell">
+        <div>
+          <p class="eyebrow">Built for the open web</p>
+          <h2>Good words.<br /><em>Good APIs.</em></h2>
+        </div>
+        <div class="closing-copy">
+          <p>Use a JSON response in your app. Use an SVG response in your README. Keep the part that matters.</p>
+          <a class="button button-dark" href="/docs">Open the docs <span>↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer shell">
+      <span>QUOTES//CDN</span>
+      <span>Quote data / author data / SVG cards</span>
+      <a href="/docs">API docs ↗</a>
+    </footer>
+    <script src="/app.js"></script>
+  </body>
+</html>
